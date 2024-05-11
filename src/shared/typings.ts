@@ -56,6 +56,6 @@ export interface WeatherWidgetData{
   country: string,
   city: string,
   weather: string,
-  time:string,
+  timestamp:number,
   id?:string,
 }

@@ -3,6 +3,7 @@ import { WeatherWidgetData } from "../../typings";
 import "./SearchHistoryItem.css";
 import searchIcon from "../../assets/icon/search-icon.png";
 import deleteIcon from "../../assets/icon/delete-icon.png";
+import { formatUnixDate } from "../../../utils/dateUtils";
 
 interface SearchHistoryItemProps {
   item: WeatherWidgetData;
@@ -23,7 +24,7 @@ const SearchHistoryItem: React.FC<SearchHistoryItemProps> = ({
         {item.city},{item.country}
       </div>
       <div className="date-action-container">
-        <div className="date">{item.time}</div>
+        <div className="date">{formatUnixDate(item.timestamp)}</div>
         <img
           className="icon"
           src={searchIcon}
@@ -41,4 +42,4 @@ const SearchHistoryItem: React.FC<SearchHistoryItemProps> = ({
   );
 };
 
-export default SearchHistoryItem;
+export const SearchHistoryItemComponent = React.memo(SearchHistoryItem);

@@ -28,7 +28,7 @@ function App() {
           country: data.sys.country,
           city: data.name,
           weather: data.weather[0].description,
-          time: dayjs().format("DD-MM-YYYY HH:mm A"),
+          timestamp: dayjs().unix(),
           id: crypto.randomUUID(),
         };
         setWidgetData(widgetData);
@@ -45,7 +45,6 @@ function App() {
   return (
     <div className="page-container">
       <div className="component-wrapper">
-        <h1>Today's Weather</h1>
         <SearchBar
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
@@ -54,7 +53,6 @@ function App() {
           handleSearch={handleSearch}
         />
         <WeatherWidget data={widgetData} />
-
         <SearchHistoryComponent handleSelect={(item) => setWidgetData(item)} />
       </div>
     </div>

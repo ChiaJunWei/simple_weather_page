@@ -4,11 +4,12 @@ import {
   deleteAllSearchHistory,
   deleteSearchHistory,
 } from "./searchHistorySlice";
-import SearchHistoryItem from "../../shared/component/SearchHistoryItem/SearchHistoryItem";
+import { SearchHistoryItemComponent } from "../../shared/component/SearchHistoryItem/SearchHistoryItem";
 import { WeatherWidgetData } from "../../shared/typings";
 import "./searchHistoryComponent.css";
 import ConfirmModal from "../../shared/component/Modal/Modal";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
+import dayjs from "dayjs";
 
 interface SearchHistoryComponentProps {
   handleSelect: (item: WeatherWidgetData) => void;
@@ -29,13 +30,16 @@ const SearchHistoryComponent: React.FC<SearchHistoryComponentProps> = ({
     selectedItem: null,
   });
 
-  const handleDelete = (item: WeatherWidgetData) => {
-    setModalState({ type: "delete", selectedItem: item });
-  };
+  const handleDelete = useCallback(
+    (item: WeatherWidgetData) => {
+      setModalState({ type: "delete", selectedItem: item });
+    },
+    [setModalState],
+  );
 
-  const handleClearAll = () => {
+  const handleClearAll = useCallback(() => {
     setModalState({ type: "clearAll", selectedItem: null });
-  };
+  }, [setModalState]);
 
   const handleConfirm = () => {
     if (modalState.type === "delete" && modalState.selectedItem) {
@@ -50,6 +54,21 @@ const SearchHistoryComponent: React.FC<SearchHistoryComponentProps> = ({
     setModalState({ type: null, selectedItem: null });
   };
 
+  const searchHistoryList = useMemo(() => {
+    const sortedList = [...searchHistory]; // Create a copy of the array
+    return sortedList
+      .sort((a, b) => b.timestamp - a.timestamp)
+      .map((item, index) => (
+        <SearchHistoryItemComponent
+          key={item.id}
+          item={item}
+          index={index}
+          handleDelete={() => handleDelete(item)}
+          handleSelect={() => handleSelect(item)}
+        />
+      ));
+  }, [searchHistory, handleDelete, handleSelect]);
+
   return (
     <div className="search-history-container">
       <div className="search-history-header">
@@ -59,17 +78,7 @@ const SearchHistoryComponent: React.FC<SearchHistoryComponentProps> = ({
         </button>
       </div>
       {searchHistory.length > 0 && (
-        <div className="search-history-list">
-          {searchHistory?.map((item, index) => (
-            <SearchHistoryItem
-              key={item.id}
-              item={item}
-              index={index}
-              handleDelete={() => handleDelete(item)}
-              handleSelect={() => handleSelect(item)}
-            />
-          ))}
-        </div>
+        <div className="search-history-list">{searchHistoryList}</div>
       )}
       {modalState.type && (
         <ConfirmModal

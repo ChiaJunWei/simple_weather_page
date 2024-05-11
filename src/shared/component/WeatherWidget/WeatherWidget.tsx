@@ -1,3 +1,4 @@
+import { formatUnixDate } from "../../../utils/dateUtils";
 import { WeatherWidgetData } from "../../typings";
 interface WeatherWidgetProps {
   data?: WeatherWidgetData;
@@ -15,7 +16,7 @@ const WeatherWidget: React.FC<WeatherWidgetProps> = ({ data }) => {
           <div>Country: {data.country}</div>
           <div>Name: {data.city}</div>
           <div>Weather: {data.weather}</div>
-          <div>time: {data.time}</div>
+          <div>time: {formatUnixDate(data.timestamp)}</div>
         </div>
       )}
     </div>
