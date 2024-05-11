@@ -48,8 +48,14 @@ export interface WeatherResponse {
     cod: number;
   }
 
-export interface HistoryItem{
-    id:string;
-    searchedCountry: string;
-    searchedDate: string;
-  }
+export interface WeatherWidgetData{
+  temp:string,
+  temp_max:string
+  temp_min: string,
+  humidity: string,
+  country: string,
+  city: string,
+  weather: string,
+  time:string,
+  id?:string,
+}

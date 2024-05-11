@@ -1,27 +1,35 @@
 import React from "react";
-import { HistoryItem } from "../../typings";
+import { WeatherWidgetData } from "../../typings";
 import "./SearchHistoryItem.css";
-import { formatIsoDate } from "../../../utils/dateUtils";
 import searchIcon from "../../assets/icon/search-icon.png";
 import deleteIcon from "../../assets/icon/delete-icon.png";
 
 interface SearchHistoryItemProps {
-  item: HistoryItem;
+  item: WeatherWidgetData;
   index: number;
   handleDelete: (index: number) => void;
+  handleSelect: (item: WeatherWidgetData) => void;
 }
 
 const SearchHistoryItem: React.FC<SearchHistoryItemProps> = ({
   item,
   index,
   handleDelete,
+  handleSelect,
 }) => {
   return (
     <div className="search-history-item">
-      <div className="country-name">{item.searchedCountry}</div>
+      <div className="country-name">
+        {item.city},{item.country}
+      </div>
       <div className="date-action-container">
-        <div className="date">{formatIsoDate(item.searchedDate)}</div>
-        <img className="icon" src={searchIcon} alt="search-icon" />
+        <div className="date">{item.time}</div>
+        <img
+          className="icon"
+          src={searchIcon}
+          alt="search-icon"
+          onClick={() => handleSelect(item)}
+        />
         <img
           className="icon"
           src={deleteIcon}
