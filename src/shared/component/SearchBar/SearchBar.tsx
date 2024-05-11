@@ -21,7 +21,15 @@ const SearchBar = () => {
       setSearchTerm("");
     }
   };
-
+  // function to handle Enter press event on search bar
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (
+      event.key === "Enter" &&
+      (event.currentTarget as HTMLInputElement).value.trim() !== ""
+    ) {
+      handleSearch();
+    }
+  };
   return (
     <div className="search-bar-container">
       <div className="search-bar-wrapper">
@@ -31,6 +39,7 @@ const SearchBar = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search"
+          onKeyDown={handleKeyPress}
         />
       </div>
       <div className="search-button" onClick={handleSearch}>
