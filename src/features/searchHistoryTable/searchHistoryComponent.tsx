@@ -15,32 +15,40 @@ const SearchHistoryComponent = () => {
     (state: RootState) => state.searchHistory.history,
   );
   const dispatch = useDispatch<AppDispatch>();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<HistoryItem | null>(null);
+  const [modalState, setModalState] = useState<{
+    type: string | null;
+    selectedItem: HistoryItem | null;
+  }>({
+    type: null,
+    selectedItem: null,
+  });
 
   const handleDelete = (item: HistoryItem) => {
-    setSelectedItem(item);
-    setIsModalOpen(true);
-  };
-  const handleConfirmDelete = () => {
-    if (selectedItem) {
-      dispatch(deleteSearchHistory(selectedItem.id));
-      setIsModalOpen(false);
-    }
+    setModalState({ type: "delete", selectedItem: item });
   };
 
-  const handleCancelDelete = () => {
-    setIsModalOpen(false);
+  const handleClearAll = () => {
+    setModalState({ type: "clearAll", selectedItem: null });
+  };
+
+  const handleConfirm = () => {
+    if (modalState.type === "delete" && modalState.selectedItem) {
+      dispatch(deleteSearchHistory(modalState.selectedItem.id));
+    } else if (modalState.type === "clearAll") {
+      dispatch(deleteAllSearchHistory());
+    }
+    setModalState({ type: null, selectedItem: null });
+  };
+
+  const handleCancel = () => {
+    setModalState({ type: null, selectedItem: null });
   };
 
   return (
     <div className="search-history-container">
       <div className="search-history-header">
         <div className="search-history-text">Search History</div>
-        <button
-          className="clear-all-button"
-          onClick={() => dispatch(deleteAllSearchHistory())}
-        >
+        <button className="clear-all-button" onClick={handleClearAll}>
           Clear All
         </button>
       </div>
@@ -56,12 +64,16 @@ const SearchHistoryComponent = () => {
           ))}
         </div>
       )}
-      {isModalOpen && (
+      {modalState.type && (
         <ConfirmModal
-          isOpen={isModalOpen}
-          onClose={handleCancelDelete}
-          onConfirm={handleConfirmDelete}
-          message={`Are you sure you want to delete this ${selectedItem?.searchedCountry} search history?`}
+          isOpen={modalState.type !== null}
+          onClose={handleCancel}
+          onConfirm={handleConfirm}
+          message={
+            modalState.type === "delete"
+              ? `Are you sure you want to delete this ${modalState.selectedItem?.searchedCountry} search history?`
+              : "Are you sure you want to clear all search history?"
+          }
         />
       )}
     </div>

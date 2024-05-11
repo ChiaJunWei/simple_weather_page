@@ -9,7 +9,6 @@ function App() {
       <div className="component-wrapper">
         <h1>Today's Weather</h1>
         <SearchBar />
-
         <SearchHistoryComponent />
       </div>
     </div>

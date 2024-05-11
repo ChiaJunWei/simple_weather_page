@@ -53,3 +53,4 @@ export interface HistoryItem{
     searchedCountry: string;
     searchedDate: string;
   }
+  
