@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { HistoryItem } from "../../shared/typings";
+import {  WeatherWidgetData } from "../../shared/typings";
 
 
 
 interface SearchHistoryState {
-  history: HistoryItem[];
+  history: WeatherWidgetData[];
 }
 
 const initialState: SearchHistoryState = {
@@ -15,7 +15,7 @@ const searchHistorySlice = createSlice({
   name: "searchHistory",
   initialState,
   reducers: {
-    addSearchHistory: (state, action: PayloadAction<HistoryItem>) => {
+    addSearchHistory: (state, action: PayloadAction<WeatherWidgetData>) => {
       state.history = [...state.history, action.payload]; 
     },
     deleteSearchHistory: (state, action: PayloadAction<string>) => {

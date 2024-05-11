@@ -35,7 +35,7 @@ app.get('/weather/:city/', async (req, res) => {
         }
 
         const { lat, lon } = locationData[0];
-        const weatherResponse = await fetch(`${WEATHER_API_URL}?lat=${lat}&lon=${lon}&appid=${API_KEY}`);
+        const weatherResponse = await fetch(`${WEATHER_API_URL}?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`);
 
         if (!weatherResponse.ok) {
             if (weatherResponse.status === 404) {

@@ -5,25 +5,31 @@ import {
   deleteSearchHistory,
 } from "./searchHistorySlice";
 import SearchHistoryItem from "../../shared/component/SearchHistoryItem/SearchHistoryItem";
-import { HistoryItem } from "../../shared/typings";
+import { WeatherWidgetData } from "../../shared/typings";
 import "./searchHistoryComponent.css";
 import ConfirmModal from "../../shared/component/Modal/Modal";
 import { useState } from "react";
 
-const SearchHistoryComponent = () => {
+interface SearchHistoryComponentProps {
+  handleSelect: (item: WeatherWidgetData) => void;
+}
+
+const SearchHistoryComponent: React.FC<SearchHistoryComponentProps> = ({
+  handleSelect,
+}) => {
   const searchHistory = useSelector(
     (state: RootState) => state.searchHistory.history,
   );
   const dispatch = useDispatch<AppDispatch>();
   const [modalState, setModalState] = useState<{
     type: string | null;
-    selectedItem: HistoryItem | null;
+    selectedItem: WeatherWidgetData | null;
   }>({
     type: null,
     selectedItem: null,
   });
 
-  const handleDelete = (item: HistoryItem) => {
+  const handleDelete = (item: WeatherWidgetData) => {
     setModalState({ type: "delete", selectedItem: item });
   };
 
@@ -33,7 +39,7 @@ const SearchHistoryComponent = () => {
 
   const handleConfirm = () => {
     if (modalState.type === "delete" && modalState.selectedItem) {
-      dispatch(deleteSearchHistory(modalState.selectedItem.id));
+      dispatch(deleteSearchHistory(modalState.selectedItem?.id ?? ""));
     } else if (modalState.type === "clearAll") {
       dispatch(deleteAllSearchHistory());
     }
@@ -56,10 +62,11 @@ const SearchHistoryComponent = () => {
         <div className="search-history-list">
           {searchHistory?.map((item, index) => (
             <SearchHistoryItem
-              key={index}
+              key={item.id}
               item={item}
               index={index}
               handleDelete={() => handleDelete(item)}
+              handleSelect={() => handleSelect(item)}
             />
           ))}
         </div>
@@ -71,7 +78,7 @@ const SearchHistoryComponent = () => {
           onConfirm={handleConfirm}
           message={
             modalState.type === "delete"
-              ? `Are you sure you want to delete this ${modalState.selectedItem?.searchedCountry} search history?`
+              ? `Are you sure you want to delete this ${modalState.selectedItem?.city} search history?`
               : "Are you sure you want to clear all search history?"
           }
         />
