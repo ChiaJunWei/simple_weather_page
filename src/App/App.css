@@ -1,4 +1,10 @@
-/* .App {
-    display:flex
-
-} */
+.page-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+.component-wrapper {
+  width: 700px;
+}

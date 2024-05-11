@@ -24,22 +24,6 @@ app.use(cors());
 const OPEN_WEATHER_API_KEY = process.env.POKEMON_API_KEY;
 
 
-app.get('/weather/:lat/:lon', async (req, res) => {
-    const { lat, lon } = req.params; // Extracting latitude and longitude from request params
-
-    try {
-        const response = await fetch(`${API_URL}?lat=${lat}&lon=${lon}&appid=${OPEN_WEATHER_API_KEY}`);
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-        const weatherData = await response.json();
-        res.json(weatherData);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Error fetching weather data' });
-    }
-});
-
 app.get('/weather/:city/:state/:country', async (req, res) => {
     const COORD_API_URL = 'http://api.openweathermap.org/geo/1.0/direct';
     const WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5/weather';

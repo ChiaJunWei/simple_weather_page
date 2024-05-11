@@ -1,8 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { HistoryItem } from "../../shared/typings";
+
+
 
 interface SearchHistoryState {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  history: any[];
+  history: HistoryItem[];
 }
 
 const initialState: SearchHistoryState = {
@@ -13,15 +15,18 @@ const searchHistorySlice = createSlice({
   name: "searchHistory",
   initialState,
   reducers: {
-
-    addSearchItem: (state, action: PayloadAction<string>) => {
-      state.history.push(action.payload);
+    addSearchHistory: (state, action: PayloadAction<HistoryItem>) => {
+      state.history = [...state.history, action.payload]; 
     },
-    deleteSearchItem: (state, action: PayloadAction<string>) => {
-      state.history = state.history.filter((item) => item !== action.payload);
+    deleteSearchHistory: (state, action: PayloadAction<string>) => {
+      state.history = state.history.filter(item => item.id !== action.payload);
     },
+    deleteAllSearchHistory: (state, ) => {
+      state.history = [];
+    },
+    
   },
 });
 
-export const { addSearchItem ,deleteSearchItem} = searchHistorySlice.actions;
+export const { addSearchHistory ,deleteSearchHistory,deleteAllSearchHistory} = searchHistorySlice.actions;
 export default searchHistorySlice.reducer;

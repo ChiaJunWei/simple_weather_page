@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from "redux-persist/lib/storage"; // Choose your storage engine (e.g., localStorage)
 import searchHistoryReducer from "../features/searchHistoryTable/searchHistorySlice";
@@ -21,6 +22,11 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 // Create the Redux store with the persisted reducer
 export const store = configureStore({
   reducer: persistedReducer,
+  middleware: getDefaultMiddleware => {
+    return getDefaultMiddleware({
+      serializableCheck: false, // Ignore redux-persist's serializable check 
+    });
+  },
 });
 
 // Create a persistor to handle loading and saving persisted data
