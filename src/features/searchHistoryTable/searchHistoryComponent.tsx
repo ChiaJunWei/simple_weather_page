@@ -34,30 +34,28 @@ const SearchHistoryComponent = () => {
   };
 
   return (
-    <div>
-      <div className="search-history-container">
-        <div className="search-history-header">
-          <div className="search-history-text">Search History</div>
-          <button
-            className="clear-all-button"
-            onClick={() => dispatch(deleteAllSearchHistory())}
-          >
-            Clear All
-          </button>
-        </div>
-        {searchHistory.length > 0 && (
-          <div className="search-history-list">
-            {searchHistory?.map((item, index) => (
-              <SearchHistoryItem
-                key={index}
-                item={item}
-                index={index}
-                handleDelete={() => handleDelete(item)}
-              />
-            ))}
-          </div>
-        )}
+    <div className="search-history-container">
+      <div className="search-history-header">
+        <div className="search-history-text">Search History</div>
+        <button
+          className="clear-all-button"
+          onClick={() => dispatch(deleteAllSearchHistory())}
+        >
+          Clear All
+        </button>
       </div>
+      {searchHistory.length > 0 && (
+        <div className="search-history-list">
+          {searchHistory?.map((item, index) => (
+            <SearchHistoryItem
+              key={index}
+              item={item}
+              index={index}
+              handleDelete={() => handleDelete(item)}
+            />
+          ))}
+        </div>
+      )}
       {isModalOpen && (
         <ConfirmModal
           isOpen={isModalOpen}

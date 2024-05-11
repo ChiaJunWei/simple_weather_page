@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../app/store";
 import { HistoryItem } from "../../typings";
 import { addSearchHistory } from "../../../features/searchHistoryTable/searchHistorySlice";
+import "./SearchBar.css";
+import searchIcon from "../../assets/icon/search-icon.png";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -21,15 +23,20 @@ const SearchBar = () => {
   };
 
   return (
-    <>
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Search"
-      />
-      <button onClick={handleSearch}>Search</button>
-    </>
+    <div className="search-bar-container">
+      <div className="search-bar-wrapper">
+        <input
+          className="search-bar"
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search"
+        />
+      </div>
+      <div className="search-button" onClick={handleSearch}>
+        <img className="search-icon-img" src={searchIcon} />
+      </div>
+    </div>
   );
 };
 export default SearchBar;
