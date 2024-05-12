@@ -1,23 +1,46 @@
 import { formatUnixDate } from "../../../utils/dateUtils";
+import { formatTemperature, toTitleCase } from "../../../utils/inputUtils";
 import { WeatherWidgetData } from "../../typings";
+import "./WeatherWidget.css";
+import sunny from "../../assets/sun.png";
 interface WeatherWidgetProps {
   data?: WeatherWidgetData;
 }
 
 const WeatherWidget: React.FC<WeatherWidgetProps> = ({ data }) => {
   return (
-    <div>
+    <div className="weather-widget-container">
       {data && (
-        <div>
-          <div>Temperature: {data.temp}</div>
-          <div>Max Temperature: {data.temp_max}</div>
-          <div>Min Temperature: {data.temp_min}</div>
-          <div>Humidity: {data.humidity}</div>
-          <div>Country: {data.country}</div>
-          <div>Name: {data.city}</div>
-          <div>Weather: {data.weather}</div>
-          <div>time: {formatUnixDate(data.timestamp)}</div>
-        </div>
+        <>
+          <div className="weather-widget-temperature-container">
+            <div className="weather-widget-temperature">
+              <p>Today's Weather</p>
+              <div className="weather-widget-current-temperature">
+                {formatTemperature(data.temp)}
+              </div>
+              <div className="weather-widget-temperature-range">
+                <div>H: {formatTemperature(data.temp_max)}</div>
+                <div>L: {formatTemperature(data.temp_min)}</div>
+              </div>
+            </div>
+            <div className="weather-widget-icon-container">
+              <img
+                src={sunny}
+                className="weather-widget-icon-img"
+                alt="Sunny"
+              />
+            </div>
+          </div>
+
+          <div className="weather-widget-details-container">
+            <div className="weather-widget-country">
+              {data.city},{data.country}
+            </div>
+            <div> {formatUnixDate(data.timestamp)}</div>
+            <div> Humidity: {data.humidity}%</div>
+            <div> {toTitleCase(data.weather)}</div>
+          </div>
+        </>
       )}
     </div>
   );

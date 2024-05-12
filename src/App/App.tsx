@@ -21,10 +21,10 @@ function App() {
       try {
         const data = await getWeatherApi(searchTerm);
         const widgetData: WeatherWidgetData = {
-          temp: data.main.temp.toString(),
-          temp_max: data.main.temp_max.toString(),
-          temp_min: data.main.temp_min.toString(),
-          humidity: data.main.humidity.toString(),
+          temp: data.main.temp,
+          temp_max: data.main.temp_max,
+          temp_min: data.main.temp_min,
+          humidity: data.main.humidity,
           country: data.sys.country,
           city: data.name,
           weather: data.weather[0].description,
@@ -52,8 +52,12 @@ function App() {
           setIsError={setIsError}
           handleSearch={handleSearch}
         />
-        <WeatherWidget data={widgetData} />
-        <SearchHistoryComponent handleSelect={(item) => setWidgetData(item)} />
+        <div className="weather-table-wrapper">
+          <WeatherWidget data={widgetData} />
+          <SearchHistoryComponent
+            handleSelect={(item) => setWidgetData(item)}
+          />
+        </div>
       </div>
     </div>
   );

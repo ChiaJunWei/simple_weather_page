@@ -49,10 +49,10 @@ export interface WeatherResponse {
   }
 
 export interface WeatherWidgetData{
-  temp:string,
-  temp_max:string
-  temp_min: string,
-  humidity: string,
+  temp:number,
+  temp_max:number
+  temp_min: number,
+  humidity: number,
   country: string,
   city: string,
   weather: string,

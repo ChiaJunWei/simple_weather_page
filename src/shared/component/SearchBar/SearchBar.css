@@ -2,7 +2,6 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding-bottom: 30px;
 }
 .search-bar-wrapper {
   width: 620px;
