@@ -3,13 +3,13 @@ import { WeatherResponse } from "../../shared/typings";
 
 // Define the base URL for the weather API
 // IMPORTANT: This Should be done by .env.production and env.development file, but because of the time constraint, I have hardcoded it here.
-let WEATHER_API_ENDPOINT;
-if (import.meta.env.DEV) {
-    WEATHER_API_ENDPOINT = import.meta.env.VITE_WEATHER_LOCAL_API_URL; //developement mode api
-} else {
-    WEATHER_API_ENDPOINT = import.meta.env.VITE_WEATHER_API_URL; //production mode api
-}
-
+// let WEATHER_API_ENDPOINT;
+// if (import.meta.env.DEV) {
+//     WEATHER_API_ENDPOINT = import.meta.env.VITE_WEATHER_LOCAL_API_URL; //developement mode api
+// } else {
+//     WEATHER_API_ENDPOINT = import.meta.env.VITE_WEATHER_API_URL; //production mode api
+// }
+const WEATHER_API_ENDPOINT= 'https://weather-api-backend-chiajunwei-chiajunweis-projects.vercel.app'
 
 export const getWeatherApi = async (city: string) => {
   // Construct the API URL with the city parameter
