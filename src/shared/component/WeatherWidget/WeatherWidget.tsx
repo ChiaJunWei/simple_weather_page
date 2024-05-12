@@ -37,9 +37,15 @@ const WeatherWidget: React.FC<WeatherWidgetProps> = ({ data }) => {
             <div className="weather-widget-country">
               {data.city},{data.country}
             </div>
-            <div> {formatUnixDate(data.timestamp)}</div>
-            <div> Humidity: {data.humidity}%</div>
-            <div> {toTitleCase(data.weather)}</div>
+            <div className="weather-widget-timestamp">
+              {formatUnixDate(data.timestamp)}
+            </div>
+            <div className="weather-widget-humidity">
+              Humidity: {data.humidity}%
+            </div>
+            <div className="weather-widget-weather">
+              {toTitleCase(data.weather)}
+            </div>
           </div>
         </>
       )}

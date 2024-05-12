@@ -50,3 +50,5 @@
 .weather-widget-country {
   font-weight: 700;
 }
+@media screen and (max-width: 600px) {
+}
