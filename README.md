@@ -1,5 +1,8 @@
 <h1 align="center">Welcome to Simple Weather Page 👋</h1>
 
+##Live Site
+<a>https://simple-weather-page-eight.vercel.app/</a>
+
 ## Description
 
 This project is a weather application developed with Express.js, leveraging its capability to combine data from two APIs while safeguarding API keys from exposure. It integrates Redux for efficient state management, facilitating the storage and retrieval of search history. Redux Persist ensures seamless persistence of state across sessions. Built using React, TypeScript, and Vite, the project promises a streamlined development experience with enhanced type safety and rapid bundling.
