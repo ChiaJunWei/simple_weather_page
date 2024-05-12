@@ -4,14 +4,14 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(26, 26, 26, 0.5);
+  background-color: rgba(26, 26, 26, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .modal-content {
-  background-color: rgba(26, 26, 26, 0.5);
+  background-color: rgba(26, 26, 26, 0.8);
   border-radius: 10px;
   color: white;
   margin: 15% auto;

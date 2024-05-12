@@ -1,8 +1,7 @@
 //Regex to only allow alphabets in input
 export const formatInputToOnlyAlphabets = (inputValue: string) => {
-    return inputValue.replace(/[^a-zA-Z]/g, '');
-  };
-
+  return inputValue.replace(/[^a-zA-Z\s]/g, '');
+};
 
   //Uppercase the first letter of each word
   export const toTitleCase = (input: string) => {

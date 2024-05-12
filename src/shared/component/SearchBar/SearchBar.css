@@ -1,9 +1,14 @@
-.search-bar-container {
+.search-bar-wrapper-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-bar-wrapper {
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
-.search-bar-wrapper {
+.search-bar-container {
   width: 620px;
 }
 .search-bar {
@@ -15,7 +20,12 @@
   padding-left: 22px;
   font-size: 16px;
 }
-.search-bar-wrapper:before {
+.search-bar:focus {
+  border-color: #719ece;
+  box-shadow: 0 0 10px #719ece;
+}
+
+.search-bar-container:before {
   content: "City";
   position: relative;
   left: 22px;
@@ -42,4 +52,13 @@
 .search-icon-img {
   height: 34px;
   width: 34px;
+}
+.error-message {
+  color: white;
+  margin-left: 20px;
+  margin-top: 10px;
+  padding: 4px;
+  border-radius: 4px;
+  width: 600px;
+  background-color: #cd3436;
 }

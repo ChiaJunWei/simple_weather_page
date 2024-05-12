@@ -10,12 +10,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 112px;
 }
 
 .weather-table-wrapper {
   width: 700px;
   padding: 40px;
   background-color: rgba(26, 26, 26, 0.3);
-  margin-top: 112px;
   border-radius: 40px;
 }

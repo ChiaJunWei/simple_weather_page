@@ -81,25 +81,29 @@ const SearchBar: React.FC<SearchBarProps> = ({
     }
   };
   return (
-    <div className="search-bar-container">
-      {isError && <div>error...</div>}
-
+    <div className="search-bar-wrapper-container">
       <div className="search-bar-wrapper">
-        <input
-          className="search-bar"
-          type="text"
-          value={searchTerm}
-          onChange={(e) => {
-            setSearchTerm(formatInputToOnlyAlphabets(e.target.value));
-            setIsError(false);
-          }}
-          placeholder="Search"
-          onKeyDown={handleKeyPress}
-        />
+        <div className="search-bar-container">
+          <input
+            className="search-bar"
+            type="text"
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(formatInputToOnlyAlphabets(e.target.value));
+              setIsError(false);
+            }}
+            style={isError ? { outline: "1px solid red" } : {}}
+            placeholder="Search"
+            onKeyDown={handleKeyPress}
+          />
+        </div>
+        <div className="search-button" onClick={handleSearch}>
+          <img className="search-icon-img" src={searchIcon} />
+        </div>
       </div>
-      <div className="search-button" onClick={handleSearch}>
-        <img className="search-icon-img" src={searchIcon} />
-      </div>
+      {isError && (
+        <div className="error-message">Error: City/Country not found</div>
+      )}
     </div>
   );
 };

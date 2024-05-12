@@ -52,12 +52,21 @@ function App() {
           setIsError={setIsError}
           handleSearch={handleSearch}
         />
-        <div className="weather-table-wrapper">
-          <WeatherWidget data={widgetData} />
+
+        {widgetData ? (
+          <>
+            <div className="weather-table-wrapper">
+              <WeatherWidget data={widgetData} />
+              <SearchHistoryComponent
+                handleSelect={(item) => setWidgetData(item)}
+              />
+            </div>
+          </>
+        ) : (
           <SearchHistoryComponent
             handleSelect={(item) => setWidgetData(item)}
           />
-        </div>
+        )}
       </div>
     </div>
   );

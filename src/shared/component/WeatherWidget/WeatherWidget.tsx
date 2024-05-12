@@ -2,7 +2,7 @@ import { formatUnixDate } from "../../../utils/dateUtils";
 import { formatTemperature, toTitleCase } from "../../../utils/inputUtils";
 import { WeatherWidgetData } from "../../typings";
 import "./WeatherWidget.css";
-import sunny from "../../assets/sun.png";
+import { getWeatherImage } from "../../../utils/weatherImageUtils";
 interface WeatherWidgetProps {
   data?: WeatherWidgetData;
 }
@@ -25,7 +25,8 @@ const WeatherWidget: React.FC<WeatherWidgetProps> = ({ data }) => {
             </div>
             <div className="weather-widget-icon-container">
               <img
-                src={sunny}
+                // src={sunny}
+                src={getWeatherImage(data.weather)}
                 className="weather-widget-icon-img"
                 alt="Sunny"
               />
