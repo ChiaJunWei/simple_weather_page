@@ -7,6 +7,7 @@ This project is a weather application developed with Express.js, leveraging its 
 ## 🚀 Usage
 
 Make sure you have [npm](https://www.npmjs.com/package/npx) installed (`npx` is shipped by default since npm `5.2.0`)
+
 Add your api key to .env
 
 ```sh
