@@ -64,7 +64,10 @@
   width: 600px;
   background-color: #cd3436;
 }
-
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
 @media screen and (max-width: 800px) {
   .search-bar-container {
     width: 100%;

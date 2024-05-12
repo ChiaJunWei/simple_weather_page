@@ -10,6 +10,7 @@ interface SearchHistoryItemProps {
   index: number; // The index of the item in the search history array
   handleDelete: (index: number) => void; // Function to delete an item from the search history
   handleSelect: (item: WeatherWidgetData) => void; // Function to select an item from the search history
+  isLoading: boolean; // Boolean to indicate if loading
 }
 
 const SearchHistoryItem: React.FC<SearchHistoryItemProps> = ({
@@ -17,6 +18,7 @@ const SearchHistoryItem: React.FC<SearchHistoryItemProps> = ({
   index,
   handleDelete,
   handleSelect,
+  isLoading,
 }) => {
   return (
     <div className="search-history-item">
@@ -27,7 +29,7 @@ const SearchHistoryItem: React.FC<SearchHistoryItemProps> = ({
         <div className="date">{formatUnixDate(item.timestamp)}</div>
       </div>
 
-      <div className="date-action-container">
+      <div className={`date-action-container ${isLoading ? "disabled" : ""}`}>
         <img
           className="icon"
           src={searchIcon}

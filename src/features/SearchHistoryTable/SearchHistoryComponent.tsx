@@ -15,11 +15,13 @@ import { useCallback, useMemo, useState } from "react";
 interface SearchHistoryComponentProps {
   handleSelect: (item: WeatherWidgetData) => void;
   handleDeleteFromHistory?: (item: WeatherWidgetData | null) => void;
+  isLoading: boolean;
 }
 
 const SearchHistoryComponent: React.FC<SearchHistoryComponentProps> = ({
   handleSelect,
   handleDeleteFromHistory,
+  isLoading,
 }) => {
   const searchHistory = useSelector(
     (state: RootState) => state.searchHistory.history,
@@ -82,6 +84,7 @@ const SearchHistoryComponent: React.FC<SearchHistoryComponentProps> = ({
           index={index}
           handleDelete={() => handleDelete(item)}
           handleSelect={() => handleSelect(item)}
+          isLoading={isLoading}
         />
       ));
   }, [searchHistory, handleDelete, handleSelect]);

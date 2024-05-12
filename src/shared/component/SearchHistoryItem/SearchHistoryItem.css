@@ -50,6 +50,10 @@
 .icon {
   transition: opacity 0.3s ease-in-out;
 }
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
 
 @media screen and (max-width: 600px) {
   .search-history-item {
@@ -63,8 +67,5 @@
   }
   .country-name {
     padding-right: 10px;
-  }
-
-  .date-action-container {
   }
 }

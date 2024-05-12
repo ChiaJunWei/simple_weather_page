@@ -8,7 +8,7 @@ dotenv.config(); // Load environment variables from a .env file
 const app = express(); // Create a new Express app
 app.use(cors()); // Enable CORS for the app
 
-const PORT = 8000; // Define the port number for the server
+const PORT = 3000; // Define the port number for the server
 
 const API_KEY = process.env.OPEN_WEATHER_API_KEY; // Get the API key from environment variables
 const GEOCODING_API_URL = 'http://api.openweathermap.org/geo/1.0/direct';// Define the URL for the OpenWeatherMap geocoding API
@@ -65,5 +65,5 @@ app.get('/weather/:city/', async (req, res) => {
 });
 
 // Start the server and listen on the defined port
-app.listen(8000,()=>{
+app.listen(3000,()=>{
     console.log(`Server is running on port ${PORT}`)})

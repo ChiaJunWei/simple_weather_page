@@ -2,7 +2,7 @@
 import { WeatherResponse } from "../../shared/typings";
 
 // Define the base URL for the weather API
-const getCoordApiUrl = 'http://localhost:8000/weather';
+const getCoordApiUrl = 'http://localhost:3000/weather';
 
 export const getWeatherApi = async (city: string) => {
   // Construct the API URL with the city parameter

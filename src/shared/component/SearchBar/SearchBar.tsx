@@ -9,6 +9,7 @@ interface SearchBarProps {
   isError: boolean; // Flag indicating if there's a search error (true/false)
   setIsError: (isError: boolean) => void; // Function to update the error flag (true/false)
   handleSearch: () => void; // Function to handle the search action
+  isLoading: boolean; // Flag indicating if the search is in progress (true/false)
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
@@ -17,6 +18,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   isError,
   setIsError,
   handleSearch,
+  isLoading,
 }) => {
   // Function to handle Enter press event on search bar
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -44,7 +46,10 @@ const SearchBar: React.FC<SearchBarProps> = ({
             onKeyDown={handleKeyPress}
           />
         </div>
-        <div className="search-button" onClick={handleSearch}>
+        <div
+          className={`search-button ${isLoading ? "disabled" : ""}`}
+          onClick={isLoading ? undefined : handleSearch}
+        >
           <img className="search-icon-img" src={searchIcon} />
         </div>
       </div>

@@ -59,7 +59,12 @@ function App() {
   };
 
   return (
-    <div className="page-wrapper">
+    <div
+      className="page-wrapper"
+      style={{
+        cursor: isLoading ? "not-allowed" : "auto",
+      }}
+    >
       <div className="page-container">
         <div className="component-wrapper">
           <SearchBar
@@ -68,6 +73,7 @@ function App() {
             isError={isError}
             setIsError={setIsError}
             handleSearch={() => handleSearch(searchTerm)}
+            isLoading={isLoading}
           />
           {/* Display Weather widget and search history components if widget data is available */}
           {widgetData ? (
@@ -75,6 +81,7 @@ function App() {
               <div className="weather-table-wrapper">
                 <WeatherWidget data={widgetData} />
                 <SearchHistoryComponent
+                  isLoading={isLoading}
                   handleSelect={(item) => handleSearch(item.city)}
                   handleDeleteFromHistory={(item) => {
                     (item === widgetData || item === null) &&
@@ -87,6 +94,7 @@ function App() {
             //  Display search history component if widget data is not available
             <SearchHistoryComponent
               handleSelect={(item) => handleSearch(item.searchTerm)}
+              isLoading={isLoading}
             />
           )}
         </div>
