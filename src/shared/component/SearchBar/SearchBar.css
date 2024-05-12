@@ -1,6 +1,7 @@
 .search-bar-wrapper-container {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .search-bar-wrapper {
@@ -62,4 +63,10 @@
   border-radius: 4px;
   width: 600px;
   background-color: #cd3436;
+}
+
+@media screen and (max-width: 800px) {
+  .search-bar-container {
+    width: 100%;
+  }
 }

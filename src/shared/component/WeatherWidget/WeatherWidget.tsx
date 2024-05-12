@@ -9,31 +9,26 @@ interface WeatherWidgetProps {
 
 const WeatherWidget: React.FC<WeatherWidgetProps> = ({ data }) => {
   return (
-    <div className="weather-widget-container">
+    <>
       {data && (
         <>
-          <div className="weather-widget-temperature-container">
-            <div className="weather-widget-temperature">
-              <p>Today's Weather</p>
-              <div className="weather-widget-current-temperature">
-                {formatTemperature(data.temp)}
-              </div>
-              <div className="weather-widget-temperature-range">
-                <div>H: {formatTemperature(data.temp_max)}</div>
-                <div>L: {formatTemperature(data.temp_min)}</div>
-              </div>
+          <div className="weather-widget-container">
+            <p className="weather-widget-title">Today's Weather</p>
+            <div className="weather-widget-current-temperature">
+              {formatTemperature(data.temp)}
+            </div>
+            <div className="weather-widget-temperature-range">
+              <div>H: {formatTemperature(data.temp_max)}</div>
+              <div>L: {formatTemperature(data.temp_min)}</div>
             </div>
             <div className="weather-widget-icon-container">
               <img
-                // src={sunny}
                 src={getWeatherImage(data.weather)}
                 className="weather-widget-icon-img"
                 alt="Sunny"
               />
             </div>
-          </div>
 
-          <div className="weather-widget-details-container">
             <div className="weather-widget-country">
               {data.city},{data.country}
             </div>
@@ -49,7 +44,7 @@ const WeatherWidget: React.FC<WeatherWidgetProps> = ({ data }) => {
           </div>
         </>
       )}
-    </div>
+    </>
   );
 };
 

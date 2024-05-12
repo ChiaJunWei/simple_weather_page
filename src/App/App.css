@@ -5,10 +5,12 @@
   padding: 0;
   width: 100%;
   background-image: url("../shared/assets/bg-dark.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
-  background-attachment: fixed;
+  display: flex;
+  height: 100vh;
+  position: relative;
+  overflow-y: auto;
+  background-size: cover;
+  background-position: center center;
 }
 
 .page-container {
@@ -17,9 +19,12 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
+  height: max-content;
   z-index: 1;
 }
 .component-wrapper {
+  min-width: 320px;
+
   width: 700px;
   display: flex;
   flex-direction: column;
@@ -55,5 +60,17 @@
 @media screen and (max-width: 800px) {
   .weather-table-wrapper {
     width: 95%;
+  }
+  .component-wrapper {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .weather-table-wrapper {
+    padding: 10px;
+    padding-top: 20px;
+  }
+  .component-wrapper {
+    width: 100%;
   }
 }

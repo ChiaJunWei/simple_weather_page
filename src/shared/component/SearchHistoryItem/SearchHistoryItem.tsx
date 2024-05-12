@@ -20,11 +20,14 @@ const SearchHistoryItem: React.FC<SearchHistoryItemProps> = ({
 }) => {
   return (
     <div className="search-history-item">
-      <div className="country-name">
-        {item.city},{item.country}
-      </div>
-      <div className="date-action-container">
+      <div className="country-timestamp-container">
+        <div className="country-name">
+          {item.city},{item.country}
+        </div>
         <div className="date">{formatUnixDate(item.timestamp)}</div>
+      </div>
+
+      <div className="date-action-container">
         <img
           className="icon"
           src={searchIcon}
