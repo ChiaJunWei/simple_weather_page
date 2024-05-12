@@ -6,7 +6,6 @@
   width: 100%;
   background-image: url("../shared/assets/bg-dark.png");
   display: flex;
-  height: 100vh;
   position: relative;
   overflow-y: auto;
   background-size: cover;
