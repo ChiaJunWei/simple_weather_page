@@ -2,6 +2,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+
 dotenv.config(); // Load environment variables from a .env file
 
 const app = express(); // Create a new Express app
@@ -18,7 +19,7 @@ app.get('/weather/:city/', async (req, res) => {
     const { city } = req.params; // Extract the city from the request parameters
     try {
         // Fetch the geocoding data for the city
-        const response = await fetch(`${GOO}?q=${city}&limit=1&appid=${GEOCODING_API_URL}`);
+        const response = await fetch(`${GEOCODING_API_URL}?q=${city}&limit=1&appid=${API_KEY}`);
         
         if (!response.ok) {
             // Handle errors based on the status code

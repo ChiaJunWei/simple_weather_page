@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to readme-md-generator 👋</h1>
+<h1 align="center">Welcome to Simple Weather Page 👋</h1>
 
 ## Description
 
@@ -7,8 +7,18 @@ This project is a weather application developed with Express.js, leveraging its 
 ## 🚀 Usage
 
 Make sure you have [npm](https://www.npmjs.com/package/npx) installed (`npx` is shipped by default since npm `5.2.0`)
+Add your api key to .env
+
+```sh
+OPEN_WEATHER_API_KEY=your_api_key
+```
 
 Run the following command at the root of your project:
+
+```sh
+npm install
+```
+
 For backend
 
 ```sh
