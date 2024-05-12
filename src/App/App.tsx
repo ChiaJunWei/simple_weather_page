@@ -10,6 +10,7 @@ import { addSearchHistory } from "../features/searchHistoryTable/searchHistorySl
 import WeatherWidget from "../shared/component/WeatherWidget/WeatherWidget";
 import dayjs from "dayjs";
 import LoadingOverlay from "../shared/component/LoadingOverlay/LoadingOverlay";
+import ScrollToTopComponent from "../shared/component/ScrollToTopComponent/ScrollToTopComponent";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -78,6 +79,9 @@ function App() {
               handleSelect={(item) => handleSearch(item.city)}
             />
           )}
+        </div>
+        <div className="scroll-to-top-component">
+          <ScrollToTopComponent />
         </div>
       </div>
       {isLoading && (

@@ -4,19 +4,7 @@
   height: 100vh;
   width: 100%;
 }
-.loading-overlay {
-  grid-area: page;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: 2;
-}
+
 .page-container {
   grid-area: page;
   display: flex;
@@ -33,10 +21,28 @@
   align-items: center;
   gap: 112px;
 }
+.scroll-to-top-component {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
 
 .weather-table-wrapper {
   width: 700px;
   padding: 40px;
   background-color: rgba(26, 26, 26, 0.3);
   border-radius: 40px;
+}
+.loading-overlay {
+  grid-area: page;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
 }
