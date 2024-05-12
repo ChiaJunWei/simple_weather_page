@@ -11,6 +11,7 @@ import dayjs from "dayjs";
 import LoadingOverlay from "../shared/component/LoadingSpinner/LoadingSpiner";
 import ScrollToTopComponent from "../shared/component/ScrollToTopComponent/ScrollToTopComponent";
 import SearchHistoryComponent from "../features/SearchHistoryTable/SearchHistoryComponent";
+console.log("");
 
 function App() {
   const [searchTerm, setSearchTerm] = useState(""); // search term input
