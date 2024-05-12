@@ -58,4 +58,5 @@ export interface WeatherWidgetData{
   weather: string,
   timestamp:number,
   id?:string,
+  searchTerm:string
 }

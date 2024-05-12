@@ -6,10 +6,10 @@ import deleteIcon from "../../assets/icon/delete-icon.png";
 import { formatUnixDate } from "../../../utils/dateUtils";
 
 interface SearchHistoryItemProps {
-  item: WeatherWidgetData;
-  index: number;
-  handleDelete: (index: number) => void;
-  handleSelect: (item: WeatherWidgetData) => void;
+  item: WeatherWidgetData; // The weather data item
+  index: number; // The index of the item in the search history array
+  handleDelete: (index: number) => void; // Function to delete an item from the search history
+  handleSelect: (item: WeatherWidgetData) => void; // Function to select an item from the search history
 }
 
 const SearchHistoryItem: React.FC<SearchHistoryItemProps> = ({

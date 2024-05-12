@@ -1,11 +1,14 @@
 import sunnyImg from "../shared/assets/sunny.png"
 import cloudyImg from "../shared/assets/cloudy.png"
 
-//refer to https://openweathermap.org/weather-conditions for different weather conditions, ideally different images for different weather conditions can be added here
+// Export a function to get the weather image based on the weather condition
 export const getWeatherImage = (weather: string) => {
-    if (!weather.toLowerCase().includes("rain")) {
-        return sunnyImg
-    } else {
-        return cloudyImg
-    }
+  // Check if the weather condition includes "rain" (case-insensitive)
+  if (!weather.toLowerCase().includes("rain")) {
+    // If it doesn't include "rain", return the sunny image
+    return sunnyImg
+  } else {
+    // If it does include "rain", return the cloudy image
+    return cloudyImg
+  }
 }

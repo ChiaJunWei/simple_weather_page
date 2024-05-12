@@ -1,12 +1,14 @@
+// Import the necessary React Redux hooks and types
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../app/store";
+// Import the necessary actions from the SearchHistorySlice
 import {
   deleteAllSearchHistory,
   deleteSearchHistory,
-} from "./searchHistorySlice";
+} from "./SearchHistorySlice";
 import { SearchHistoryItemComponent } from "../../shared/component/SearchHistoryItem/SearchHistoryItem";
 import { WeatherWidgetData } from "../../shared/typings";
-import "./searchHistoryComponent.css";
+import "./SearchHistoryComponent.css";
 import ConfirmModal from "../../shared/component/Modal/Modal";
 import { useCallback, useMemo, useState } from "react";
 
@@ -22,7 +24,10 @@ const SearchHistoryComponent: React.FC<SearchHistoryComponentProps> = ({
   const searchHistory = useSelector(
     (state: RootState) => state.searchHistory.history,
   );
+  // Get the dispatch function from the Redux store
   const dispatch = useDispatch<AppDispatch>();
+
+  // Store the modal state (type and selected item)
   const [modalState, setModalState] = useState<{
     type: string | null;
     selectedItem: WeatherWidgetData | null;
@@ -31,6 +36,7 @@ const SearchHistoryComponent: React.FC<SearchHistoryComponentProps> = ({
     selectedItem: null,
   });
 
+  // Callback function to handle deletion of a search history item
   const handleDelete = useCallback(
     (item: WeatherWidgetData) => {
       setModalState({ type: "delete", selectedItem: item });
@@ -38,10 +44,12 @@ const SearchHistoryComponent: React.FC<SearchHistoryComponentProps> = ({
     [setModalState],
   );
 
+  // Callback function to handle clearing all search history
   const handleClearAll = useCallback(() => {
     setModalState({ type: "clearAll", selectedItem: null });
   }, [setModalState]);
 
+  // Function to handle confirmation of the modal
   const handleConfirm = () => {
     if (
       modalState.type === "delete" &&
@@ -57,10 +65,12 @@ const SearchHistoryComponent: React.FC<SearchHistoryComponentProps> = ({
     setModalState({ type: null, selectedItem: null });
   };
 
+  //Function to handle cancellation of the modal
   const handleCancel = () => {
     setModalState({ type: null, selectedItem: null });
   };
 
+  // Memoize the search history list to prevent unnecessary re-renders
   const searchHistoryList = useMemo(() => {
     const sortedList = [...searchHistory]; // Create a copy of the array
     return sortedList
@@ -87,9 +97,10 @@ const SearchHistoryComponent: React.FC<SearchHistoryComponentProps> = ({
         )}
       </div>
       {searchHistory.length > 0 && (
+        /* Conditional rendering of the search history list */
         <div className="search-history-list">{searchHistoryList}</div>
       )}
-      {modalState.type && (
+      {modalState.type /* Conditional rendering of the ConfirmModal */ && (
         <ConfirmModal
           isOpen={modalState.type !== null}
           onClose={handleCancel}

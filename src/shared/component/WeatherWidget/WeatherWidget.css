@@ -92,6 +92,10 @@
     text-align: right;
     align-self: end;
   }
+  .weather-widget-icon-img {
+    height: 220px;
+    width: 220px;
+  }
 }
 @media screen and (max-width: 400px) {
   .weather-widget-current-temperature {
@@ -107,7 +111,7 @@
     font-size: 12px;
   }
   .weather-widget-icon-img {
-    height: 220px;
-    width: 220px;
+    height: 180px;
+    width: 180px;
   }
 }

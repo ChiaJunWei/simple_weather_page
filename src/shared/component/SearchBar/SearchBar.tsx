@@ -1,13 +1,14 @@
 import "./SearchBar.css";
 import searchIcon from "../../assets/icon/search-icon.png";
+// Import the input utility function to format input to only alphabets
 import { formatInputToOnlyAlphabets } from "../../../utils/inputUtils";
 
 interface SearchBarProps {
-  searchTerm: string;
-  setSearchTerm: (searchTerm: string) => void;
-  isError: boolean;
-  setIsError: (isError: boolean) => void;
-  handleSearch: () => void;
+  searchTerm: string; // The current search term
+  setSearchTerm: (searchTerm: string) => void; // Function to update the search term
+  isError: boolean; // Flag indicating if there's a search error (true/false)
+  setIsError: (isError: boolean) => void; // Function to update the error flag (true/false)
+  handleSearch: () => void; // Function to handle the search action
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({

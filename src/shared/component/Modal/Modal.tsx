@@ -2,18 +2,19 @@ import React from "react";
 import "./Modal.css";
 
 interface ConfirmModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onConfirm: () => void;
-  message?: string;
+  isOpen: boolean; // Whether the modal is open or not
+  onClose: () => void; // Function to close the modal
+  onConfirm: () => void; // Function to confirm the action
+  message?: string; // Optional message to display in the modal
 }
 
 const ConfirmModal: React.FC<ConfirmModalProps> = ({
   isOpen,
   onClose,
   onConfirm,
-  message = "are you sure you want to delete this item?",
+  message = "Are you sure you want to delete this item?", // Default message if props is not provided
 }) => {
+  // If the modal is not open, return null (don't render anything)
   if (!isOpen) return null;
 
   return (
