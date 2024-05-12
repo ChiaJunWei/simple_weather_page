@@ -9,14 +9,15 @@ import { WeatherWidgetData } from "../../shared/typings";
 import "./searchHistoryComponent.css";
 import ConfirmModal from "../../shared/component/Modal/Modal";
 import { useCallback, useMemo, useState } from "react";
-import dayjs from "dayjs";
 
 interface SearchHistoryComponentProps {
   handleSelect: (item: WeatherWidgetData) => void;
+  handleDeleteFromHistory?: (item: WeatherWidgetData | null) => void;
 }
 
 const SearchHistoryComponent: React.FC<SearchHistoryComponentProps> = ({
   handleSelect,
+  handleDeleteFromHistory,
 }) => {
   const searchHistory = useSelector(
     (state: RootState) => state.searchHistory.history,
@@ -42,10 +43,16 @@ const SearchHistoryComponent: React.FC<SearchHistoryComponentProps> = ({
   }, [setModalState]);
 
   const handleConfirm = () => {
-    if (modalState.type === "delete" && modalState.selectedItem) {
+    if (
+      modalState.type === "delete" &&
+      modalState.selectedItem &&
+      modalState?.selectedItem !== undefined
+    ) {
       dispatch(deleteSearchHistory(modalState.selectedItem?.id ?? ""));
+      handleDeleteFromHistory?.(modalState?.selectedItem);
     } else if (modalState.type === "clearAll") {
       dispatch(deleteAllSearchHistory());
+      handleDeleteFromHistory?.(null);
     }
     setModalState({ type: null, selectedItem: null });
   };
@@ -73,9 +80,11 @@ const SearchHistoryComponent: React.FC<SearchHistoryComponentProps> = ({
     <div className="search-history-container">
       <div className="search-history-header">
         <div className="search-history-text">Search History</div>
-        <button className="clear-all-button" onClick={handleClearAll}>
-          Clear All
-        </button>
+        {searchHistoryList.length > 0 && (
+          <button className="clear-all-button" onClick={handleClearAll}>
+            Clear All
+          </button>
+        )}
       </div>
       {searchHistory.length > 0 && (
         <div className="search-history-list">{searchHistoryList}</div>

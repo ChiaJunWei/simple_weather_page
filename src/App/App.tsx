@@ -9,17 +9,23 @@ import { AppDispatch } from "./store";
 import { addSearchHistory } from "../features/searchHistoryTable/searchHistorySlice";
 import WeatherWidget from "../shared/component/WeatherWidget/WeatherWidget";
 import dayjs from "dayjs";
+import LoadingOverlay from "../shared/component/LoadingOverlay/LoadingOverlay";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isError, setIsError] = useState(false);
-  // const [searchHistory, setSearchHistory] = useState<WeatherWidgetData[]>([]);
-  const [widgetData, setWidgetData] = useState<WeatherWidgetData>();
+  const [isLoading, setIsloading] = useState(false);
+  const [widgetData, setWidgetData] = useState<WeatherWidgetData | null>(null);
 
-  const handleSearch = async () => {
-    if (searchTerm.trim() !== "") {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleSearch = async (searchItem: string) => {
+    window.scrollTo(0, 0);
+    if (searchItem.trim() !== "") {
       try {
-        const data = await getWeatherApi(searchTerm);
+        setIsloading(true);
+        const data = await getWeatherApi(searchItem);
+
         const widgetData: WeatherWidgetData = {
           temp: data.main.temp,
           temp_max: data.main.temp_max,
@@ -32,42 +38,49 @@ function App() {
           id: crypto.randomUUID(),
         };
         setWidgetData(widgetData);
-        // setSearchHistory((prevHistory) => [...prevHistory, widgetData]);
         dispatch(addSearchHistory(widgetData));
         setSearchTerm("");
       } catch (error) {
         setIsError(true);
+      } finally {
+        setIsloading(false);
       }
     }
   };
-  const dispatch = useDispatch<AppDispatch>();
 
   return (
-    <div className="page-container">
-      <div className="component-wrapper">
-        <SearchBar
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-          isError={isError}
-          setIsError={setIsError}
-          handleSearch={handleSearch}
-        />
-
-        {widgetData ? (
-          <>
-            <div className="weather-table-wrapper">
-              <WeatherWidget data={widgetData} />
-              <SearchHistoryComponent
-                handleSelect={(item) => setWidgetData(item)}
-              />
-            </div>
-          </>
-        ) : (
-          <SearchHistoryComponent
-            handleSelect={(item) => setWidgetData(item)}
+    <div className="page-wrapper">
+      <div className="page-container">
+        <div className="component-wrapper">
+          <SearchBar
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            isError={isError}
+            setIsError={setIsError}
+            handleSearch={() => handleSearch(searchTerm)}
           />
-        )}
+
+          {widgetData ? (
+            <>
+              <div className="weather-table-wrapper">
+                <WeatherWidget data={widgetData} />
+                <SearchHistoryComponent
+                  handleSelect={(item) => handleSearch(item.city)}
+                  handleDeleteFromHistory={(item) => {
+                    (item === widgetData || item === null) &&
+                      setWidgetData(null);
+                  }}
+                />
+              </div>
+            </>
+          ) : (
+            <SearchHistoryComponent
+              handleSelect={(item) => handleSearch(item.city)}
+            />
+          )}
+        </div>
       </div>
+      <div>{isLoading && <LoadingOverlay />}</div>
     </div>
   );
 }

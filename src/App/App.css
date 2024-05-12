@@ -1,9 +1,30 @@
+.page-wrapper {
+  display: grid;
+  grid-template-areas: "page";
+  height: 100vh;
+  width: 100%;
+}
+.loading-overlay {
+  grid-area: page;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 2; /* Add a higher z-index to overlay */
+}
 .page-container {
+  grid-area: page;
   display: flex;
   align-items: center;
   flex-direction: column;
   height: 100vh;
   width: 100%;
+  z-index: 1;
 }
 .component-wrapper {
   width: 700px;

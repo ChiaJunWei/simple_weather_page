@@ -27,50 +27,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
   setIsError,
   handleSearch,
 }) => {
-  // const [searchTerm, setSearchTerm] = useState("");
-  // const [isError, setIsError] = useState(false);
-  // const dispatch = useDispatch<AppDispatch>();
-
-  // const {
-  //   data: locationData,
-  //   isLoading,
-  //   error,
-  //   refetch,
-  // } = useQuery({
-  //   queryKey: ["searchTerm", searchTerm],
-  //   queryFn: () => getWeatherApi(searchTerm),
-  //   enabled: false,
-  //   retry: false,
-  // });
-  // const {
-  //   data: locationData,
-  //   isLoading,
-  //   error,
-  //   refetch,
-  // } = useWeatherQuery(searchTerm);
-
-  // const handleSearch = async () => {
-  //   if (searchTerm.trim() !== "") {
-  //     try {
-  //       const data = await getWeatherApi(searchTerm);
-  //       console.log(data);
-  //       addSuccesfulSearchToHistory();
-  //       setSearchTerm("");
-  //     } catch (error) {
-  //       setIsError(true);
-  //     }
-  //   }
-  // };
-
-  // const addSuccesfulSearchToHistory = () => {
-  //   const newItem: HistoryItem = {
-  //     id: Date.now().toString(),
-  //     searchedCountry: searchTerm,
-  //     searchedDate: new Date().toISOString(),
-  //   };
-  //   dispatch(addSearchHistory(newItem));
-  // };
-
   // function to handle Enter press event on search bar
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (
