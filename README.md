@@ -1,6 +1,7 @@
 <h1 align="center">Welcome to Simple Weather Page 👋</h1>
 
-##Live Site
+## Live Site
+
 <a>https://simple-weather-page-eight.vercel.app/</a>
 
 ## Description
