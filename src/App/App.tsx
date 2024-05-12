@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import SearchHistoryComponent from "../features/searchHistoryTable/searchHistoryComponent";
 import "./App.css";
 import SearchBar from "../shared/component/SearchBar/SearchBar";
@@ -80,7 +80,11 @@ function App() {
           )}
         </div>
       </div>
-      <div>{isLoading && <LoadingOverlay />}</div>
+      {isLoading && (
+        <div className="loading-overlay">
+          <LoadingOverlay />
+        </div>
+      )}
     </div>
   );
 }

@@ -15,7 +15,7 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  z-index: 2; /* Add a higher z-index to overlay */
+  z-index: 2;
 }
 .page-container {
   grid-area: page;
