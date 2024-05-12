@@ -1,16 +1,6 @@
-// import { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { AppDispatch } from "../../../app/store";
-// import { HistoryItem } from "../../typings";
-// import { addSearchHistory } from "../../../features/searchHistoryTable/searchHistorySlice";
 import "./SearchBar.css";
 import searchIcon from "../../assets/icon/search-icon.png";
 import { formatInputToOnlyAlphabets } from "../../../utils/inputUtils";
-// import { getWeatherApi } from "../../../utils/api/weatherApi";
-// import { useQuery } from "@tanstack/react-query";
-// import useWeatherQuery from "../../../utils/hooks/useWeatherQuery";
-// import { useQuery } from "@tanstack/react-query";
-// import { getWeatherApi } from "../../../utils/api/weatherApi";
 
 interface SearchBarProps {
   searchTerm: string;
@@ -27,7 +17,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   setIsError,
   handleSearch,
 }) => {
-  // function to handle Enter press event on search bar
+  // Function to handle Enter press event on search bar
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (
       event.key === "Enter" &&

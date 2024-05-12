@@ -64,6 +64,8 @@
 @media screen and (max-width: 700px) {
   .weather-widget-container {
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 10% 100px 20px 10px;
+
     min-height: 150px;
     gap: 4px;
     font-size: 16px;
@@ -90,25 +92,22 @@
     text-align: right;
     align-self: end;
   }
-
-  .weather-widget-icon-container {
-    transform: translate(21%, -72%);
-  }
 }
 @media screen and (max-width: 400px) {
   .weather-widget-current-temperature {
-    font-size: 50px;
+    font-size: 60px;
   }
   .weather-widget-container {
     min-height: 150px;
     gap: 4px;
     font-size: 12px;
+    grid-template-rows: 10% 100px 13px 10px;
   }
   .weather-widget-temperature-range {
     font-size: 12px;
   }
   .weather-widget-icon-img {
-    height: 157px;
-    width: 157px;
+    height: 220px;
+    width: 220px;
   }
 }
