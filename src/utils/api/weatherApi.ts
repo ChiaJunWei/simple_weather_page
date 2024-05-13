@@ -10,7 +10,7 @@ if (import.meta.env.DEV) {
     WEATHER_API_ENDPOINT = import.meta.env.VITE_WEATHER_API_URL; //production mode api
 }
 
-
+console.log(import.meta.env)
 export const getWeatherApi = async (city: string) => {
   // Construct the API URL with the city parameter
   const url = `${WEATHER_API_ENDPOINT}/weather/${city}`;
