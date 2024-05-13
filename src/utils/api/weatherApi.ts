@@ -10,12 +10,10 @@ if (import.meta.env.DEV) {
     WEATHER_API_ENDPOINT = import.meta.env.VITE_WEATHER_API_URL; //production mode api
 }
 
-console.log(import.meta.env.VITE_WEATHER_API_URL)
 
 export const getWeatherApi = async (city: string) => {
   // Construct the API URL with the city parameter
-  const url = `https://weather-api-backend.vercel.app/weather/${city}`;
-  // const url = `${WEATHER_API_ENDPOINT}/weather/${city}`;
+  const url = `${WEATHER_API_ENDPOINT}/weather/${city}`;
   // Fetch the data from the API
   const res = await fetch(url);
   // Check if the response is OK (200-299 status code)
